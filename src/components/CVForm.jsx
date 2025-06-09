@@ -675,7 +675,7 @@ const CVForm = ({ cvData, setCvData }) => {
                 <select
                   value={cvData.personalInfo.gender}
                   onChange={(e) => updatePersonalInfo('gender', e.target.value)}
-                  className="light-input rounded-lg px-3 py-2 w-full"
+                  className="light-input rounded-lg px-3 py-2.5 w-full min-h-[44px] text-sm"
                 >
                   <option value="">Cinsiyet seçin</option>
                   <option value="Erkek">Erkek</option>
@@ -706,7 +706,7 @@ const CVForm = ({ cvData, setCvData }) => {
                 <select
                   value={cvData.personalInfo.maritalStatus}
                   onChange={(e) => updatePersonalInfo('maritalStatus', e.target.value)}
-                  className="light-input rounded-lg px-3 py-2 w-full"
+                  className="light-input rounded-lg px-3 py-2.5 w-full min-h-[44px] text-sm"
                 >
                   <option value="">Medeni durum seçin</option>
                   <option value="Bekar">Bekar</option>
@@ -1107,38 +1107,42 @@ const CVForm = ({ cvData, setCvData }) => {
       ) : (
         <div className="space-y-4">
           {cvData.skills.map((skill, index) => (
-            <div key={skill.id} className="flex items-center gap-4 light-card">
-              <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                {index + 1}
+            <div key={skill.id} className="light-card">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                  {index + 1}
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="React.js - TypeScript - Problem Çözme"
+                    value={skill.name}
+                    onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
+                    className="w-full light-input rounded px-3 py-2"
+                  />
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
+                    💡 Teknik yetenekler (programlama dilleri, araçlar) veya soft skills (liderlik, iletişim)
+                  </p>
+                </div>
+                <button
+                  onClick={() => removeSkill(skill.id)}
+                  className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors duration-200 flex-shrink-0"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  placeholder="React.js - TypeScript - Problem Çözme"
-                  value={skill.name}
-                  onChange={(e) => updateSkill(skill.id, 'name', e.target.value)}
-                  className="w-full light-input rounded px-3 py-2"
-                />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
-                  💡 Teknik yetenekler (programlama dilleri, araçlar) veya soft skills (liderlik, iletişim)
-                </p>
+              <div className="ml-12">
+                <select
+                  value={skill.level}
+                  onChange={(e) => updateSkill(skill.id, 'level', e.target.value)}
+                  className="light-select rounded px-3 py-2.5 w-full sm:w-auto min-w-[140px] min-h-[44px] text-sm"
+                >
+                  <option value="beginner">Başlangıç</option>
+                  <option value="intermediate">Orta</option>
+                  <option value="advanced">İleri</option>
+                  <option value="expert">Uzman</option>
+                </select>
               </div>
-              <select
-                value={skill.level}
-                onChange={(e) => updateSkill(skill.id, 'level', e.target.value)}
-                className="light-select rounded px-3 py-2 min-w-[120px]"
-              >
-                <option value="beginner">Başlangıç</option>
-                <option value="intermediate">Orta</option>
-                <option value="advanced">İleri</option>
-                <option value="expert">Uzman</option>
-              </select>
-              <button
-                onClick={() => removeSkill(skill.id)}
-                className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors duration-200 flex-shrink-0"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
             </div>
           ))}
         </div>
@@ -1185,38 +1189,42 @@ const CVForm = ({ cvData, setCvData }) => {
       ) : (
         <div className="space-y-4">
           {cvData.languages.map((language, index) => (
-            <div key={language.id} className="flex items-center gap-4 light-card">
-              <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
-                {index + 1}
+            <div key={language.id} className="light-card">
+              <div className="flex items-start gap-4 mb-3">
+                <div className="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white text-sm font-bold flex-shrink-0">
+                  {index + 1}
+                </div>
+                <div className="flex-1">
+                  <input
+                    type="text"
+                    placeholder="İngilizce - Almanca - Fransızca"
+                    value={language.name}
+                    onChange={(e) => updateLanguage(language.id, 'name', e.target.value)}
+                    className="w-full light-input rounded px-3 py-2"
+                  />
+                  <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
+                    🌍 Konuşabildiğiniz dilleri yazın (ana dilinizi de ekleyebilirsiniz)
+                  </p>
+                </div>
+                <button
+                  onClick={() => removeLanguage(language.id)}
+                  className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors duration-200 flex-shrink-0"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </button>
               </div>
-              <div className="flex-1">
-                <input
-                  type="text"
-                  placeholder="İngilizce - Almanca - Fransızca"
-                  value={language.name}
-                  onChange={(e) => updateLanguage(language.id, 'name', e.target.value)}
-                  className="w-full light-input rounded px-3 py-2"
-                />
-                <p className="text-xs text-gray-500 dark:text-gray-400 mt-1 ml-1">
-                  🌍 Konuşabildiğiniz dilleri yazın (ana dilinizi de ekleyebilirsiniz)
-                </p>
+              <div className="ml-12">
+                <select
+                  value={language.level}
+                  onChange={(e) => updateLanguage(language.id, 'level', e.target.value)}
+                  className="light-select rounded px-3 py-2.5 w-full sm:w-auto min-w-[140px] min-h-[44px] text-sm"
+                >
+                  <option value="beginner">Başlangıç</option>
+                  <option value="intermediate">Orta</option>
+                  <option value="advanced">İleri</option>
+                  <option value="native">Ana dil</option>
+                </select>
               </div>
-              <select
-                value={language.level}
-                onChange={(e) => updateLanguage(language.id, 'level', e.target.value)}
-                className="light-select rounded px-3 py-2 min-w-[120px]"
-              >
-                <option value="beginner">Başlangıç</option>
-                <option value="intermediate">Orta</option>
-                <option value="advanced">İleri</option>
-                <option value="native">Ana dil</option>
-              </select>
-              <button
-                onClick={() => removeLanguage(language.id)}
-                className="p-2 text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900/20 rounded transition-colors duration-200 flex-shrink-0"
-              >
-                <Trash2 className="w-4 h-4" />
-              </button>
             </div>
           ))}
         </div>

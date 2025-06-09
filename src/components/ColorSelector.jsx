@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
+import React from 'react';
+import { Check } from 'lucide-react';
 
 const ColorSelector = ({ selectedColor, onColorChange }) => {
   const colors = [
@@ -68,68 +68,44 @@ const ColorSelector = ({ selectedColor, onColorChange }) => {
     }
   ];
 
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const selectedColorData = colors.find(c => c.id === selectedColor) || colors[0];
-
-  // Dropdown dışında tıklama durumunda kapat
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleColorSelect = (colorId) => {
-    onColorChange(colorId);
-    setIsOpen(false);
-  };
-
   return (
-    <div className="relative z-50" ref={dropdownRef}>
-      <label className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2 block transition-colors duration-300">
+    <div className="space-y-3">
+      <label className="text-sm font-medium text-gray-800 dark:text-gray-200 block transition-colors duration-300">
         Renk Seç
       </label>
       
-      {/* Dropdown Trigger */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm hover:border-gray-400 dark:hover:border-gray-500 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors duration-200"
-      >
-        <div className="flex items-center gap-2">
-          <div className={`w-4 h-4 bg-gradient-to-br ${selectedColorData.preview} rounded`}></div>
-          <span className="text-gray-800 dark:text-gray-200">{selectedColorData.name}</span>
-        </div>
-        <ChevronDown 
-          className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
-        />
-      </button>
-
-      {/* Dropdown Menu */}
-      {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-[100] max-h-48 overflow-y-auto">
-          {colors.map((color) => (
+      <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-5 gap-3">
+        {colors.map((color) => {
+          const isSelected = selectedColor === color.id;
+          return (
             <button
               key={color.id}
-              onClick={() => handleColorSelect(color.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 ${
-                selectedColor === color.id ? 'bg-orange-50 dark:bg-orange-900/20' : ''
+              onClick={() => onColorChange(color.id)}
+              className={`relative group p-3 rounded-xl border-2 transition-all duration-200 hover:scale-105 hover:shadow-lg ${
+                isSelected 
+                  ? 'border-orange-500 dark:border-orange-400 bg-orange-50 dark:bg-orange-900/20' 
+                  : 'border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-500'
               }`}
+              title={color.name}
             >
-              <div className={`w-4 h-4 bg-gradient-to-br ${color.preview} rounded flex-shrink-0`}></div>
-              <span className="flex-1 text-left font-medium text-gray-800 dark:text-gray-200">{color.name}</span>
-              {selectedColor === color.id && (
-                <div className="w-2 h-2 bg-orange-600 dark:bg-orange-400 rounded-full flex-shrink-0"></div>
+              {/* Seçili işareti */}
+              {isSelected && (
+                <div className="absolute -top-2 -right-2 w-5 h-5 bg-orange-500 rounded-full flex items-center justify-center">
+                  <Check className="w-2.5 h-2.5 text-white" />
+                </div>
               )}
+              
+              {/* Renk gösterimi */}
+              <div className="space-y-2">
+                <div className={`w-8 h-8 bg-gradient-to-br ${color.preview} rounded-lg mx-auto shadow-sm`}></div>
+                <p className="text-xs font-medium text-gray-700 dark:text-gray-300 text-center">
+                  {color.name}
+                </p>
+              </div>
             </button>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Check, ChevronDown } from 'lucide-react';
+import React from 'react';
+import { Check } from 'lucide-react';
 
 const TemplateSelector = ({ selectedTemplate, onTemplateChange }) => {
   const templates = [
@@ -32,75 +32,68 @@ const TemplateSelector = ({ selectedTemplate, onTemplateChange }) => {
     return colors[color] || colors.orange;
   };
 
-  const [isOpen, setIsOpen] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const selectedTemplateData = templates.find(t => t.id === selectedTemplate) || templates[0];
-
-  // Dropdown dışında tıklama durumunda kapat
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setIsOpen(false);
-      }
+  const getBorderColor = (color, isSelected) => {
+    if (!isSelected) return 'border-gray-200 dark:border-gray-600';
+    
+    const colors = {
+      blue: 'border-blue-500 dark:border-blue-400',
+      orange: 'border-orange-500 dark:border-orange-400',
+      gray: 'border-gray-500 dark:border-gray-400'
     };
+    return colors[color] || colors.orange;
+  };
 
-    document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
-  }, []);
-
-  const handleTemplateSelect = (templateId) => {
-    onTemplateChange(templateId);
-    setIsOpen(false);
+  const getBackgroundColor = (color, isSelected) => {
+    if (!isSelected) return 'bg-white dark:bg-gray-800';
+    
+    const colors = {
+      blue: 'bg-blue-50 dark:bg-blue-900/20',
+      orange: 'bg-orange-50 dark:bg-orange-900/20',
+      gray: 'bg-gray-50 dark:bg-gray-900/20'
+    };
+    return colors[color] || colors.orange;
   };
 
   return (
-    <div className="relative z-50" ref={dropdownRef}>
-      <label className="text-sm font-medium text-gray-800 dark:text-gray-200 mb-2 block transition-colors duration-300">
+    <div className="space-y-3">
+      <label className="text-sm font-medium text-gray-800 dark:text-gray-200 block transition-colors duration-300">
         Şablon Seç
       </label>
       
-      {/* Dropdown Trigger */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-3 py-2 text-sm hover:border-gray-400 dark:hover:border-gray-500 focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none transition-colors duration-200"
-      >
-        <div className="flex items-center gap-2">
-          <div className={`w-4 h-4 ${getIconColor(selectedTemplateData.color)} rounded flex items-center justify-center`}>
-            <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-          </div>
-          <span className="text-gray-800 dark:text-gray-200">{selectedTemplateData.name}</span>
-        </div>
-        <ChevronDown 
-          className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isOpen ? 'rotate-180' : ''}`} 
-        />
-      </button>
-
-      {/* Dropdown Menu */}
-      {isOpen && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg shadow-xl z-[100] max-h-48 overflow-y-auto">
-          {templates.map((template) => (
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        {templates.map((template) => {
+          const isSelected = selectedTemplate === template.id;
+          return (
             <button
               key={template.id}
-              onClick={() => handleTemplateSelect(template.id)}
-              className={`w-full flex items-center gap-3 px-3 py-2 text-sm hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200 ${
-                selectedTemplate === template.id ? 'bg-orange-50 dark:bg-orange-900/20' : ''
-              }`}
+              onClick={() => onTemplateChange(template.id)}
+              className={`relative p-4 rounded-xl border-2 transition-all duration-200 hover:scale-105 hover:shadow-lg ${getBorderColor(template.color, isSelected)} ${getBackgroundColor(template.color, isSelected)}`}
             >
-              <div className={`w-4 h-4 ${getIconColor(template.color)} rounded flex items-center justify-center flex-shrink-0`}>
-                <div className="w-1.5 h-1.5 bg-white rounded-sm"></div>
-              </div>
-              <div className="flex-1 text-left">
-                <div className="font-medium text-gray-800 dark:text-gray-200">{template.name}</div>
-                <div className="text-xs text-gray-500 dark:text-gray-400">{template.description}</div>
-              </div>
-              {selectedTemplate === template.id && (
-                <Check className="w-4 h-4 text-orange-600 dark:text-orange-400 flex-shrink-0" />
+              {/* Seçili işareti */}
+              {isSelected && (
+                <div className="absolute -top-2 -right-2 w-6 h-6 bg-orange-500 rounded-full flex items-center justify-center">
+                  <Check className="w-3 h-3 text-white" />
+                </div>
               )}
+              
+              {/* İkon */}
+              <div className={`w-8 h-8 ${getIconColor(template.color)} rounded-lg flex items-center justify-center mx-auto mb-3`}>
+                <div className="w-3 h-3 bg-white rounded-sm"></div>
+              </div>
+              
+              {/* İçerik */}
+              <div className="text-center">
+                <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-1">
+                  {template.name}
+                </h3>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  {template.description}
+                </p>
+              </div>
             </button>
-          ))}
-        </div>
-      )}
+          );
+        })}
+      </div>
     </div>
   );
 };

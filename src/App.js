@@ -106,12 +106,12 @@ function App() {
         </div>
 
         {/* Seçici Controls - Mobil responsive */}
-        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300 relative z-40">
+        <div className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 mb-6 sm:mb-8 transition-colors duration-300 relative z-10">
           <h2 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6 flex items-center gap-2 transition-colors duration-300">
             <div className="w-2 h-2 bg-gradient-to-r from-purple-400 to-pink-500 rounded-full"></div>
             Özelleştirme
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="space-y-6">
             <TemplateSelector
               selectedTemplate={selectedTemplate}
               onTemplateChange={setSelectedTemplate}
@@ -130,7 +130,7 @@ function App() {
         {/* Ana içerik - Mobil responsive grid */}
         <div className="grid grid-cols-1 xl:grid-cols-12 gap-6 lg:gap-8 relative z-10">
           {/* CV Form - Mobilde üstte */}
-          <div className="xl:col-span-5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 transition-colors duration-300 relative z-10 order-2 xl:order-1">
+          <div className="xl:col-span-5 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 transition-colors duration-300 relative z-20 order-2 xl:order-1">
             <h2 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6 flex items-center gap-2 transition-colors duration-300">
               <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-amber-500 rounded-full"></div>
               CV Bilgileri
@@ -139,7 +139,7 @@ function App() {
           </div>
 
           {/* CV Preview - Mobilde altta */}
-          <div className="xl:col-span-7 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 transition-colors duration-300 relative z-10 order-1 xl:order-2">
+          <div className="xl:col-span-7 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl border border-orange-200 dark:border-gray-700 p-4 sm:p-6 transition-colors duration-300 relative z-20 order-1 xl:order-2">
             <h2 className="text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6 flex items-center gap-2 transition-colors duration-300">
               <div className="w-2 h-2 bg-gradient-to-r from-amber-400 to-yellow-500 rounded-full"></div>
               Önizleme

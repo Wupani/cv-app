@@ -24,6 +24,11 @@ body {
   font-feature-settings: 'cv03', 'cv04', 'cv11';
   overflow-x: hidden; /* Yatay scroll'u engelle */
   background: linear-gradient(to bottom right, #fff7ed 0%, #fffbeb 50%, #fff7ed 100%);
+  /* Mobil için ek optimizasyonlar */
+  -webkit-overflow-scrolling: touch;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
 }
 
 body.dark {
@@ -251,6 +256,60 @@ code {
   /* Form elementleri için daha iyi spacing */
   .light-input, .light-textarea, .light-select {
     font-size: 1rem; /* iOS zoom'u engellemek için 16px */
+  }
+  
+  /* Dropdown menüler için mobil optimizasyon */
+  .relative [class*="z-[200]"] {
+    z-index: 999 !important;
+  }
+  
+  .relative [class*="z-[300]"] {
+    z-index: 1000 !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  
+  /* Touch interaction iyileştirmesi */
+  button:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
+  
+  /* Dropdown trigger için daha büyük touch area */
+  .relative > button {
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+  
+  /* Dropdown items için touch-friendly boyutlar */
+  .absolute button {
+    min-height: 48px;
+    padding: 0.875rem 0.75rem;
+    touch-action: manipulation;
+  }
+  
+  /* Mobil için dropdown overlay */
+  .relative [class*="absolute"] {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Touch-action optimization */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
+  
+  /* Prevent text selection on mobile */
+  .relative button, .absolute button {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
   }
 }
 
