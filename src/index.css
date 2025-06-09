@@ -1,13 +1,317 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font Imports */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&family=Merriweather:wght@300;400;700&family=Source+Serif+Pro:wght@400;600;700&display=swap');
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 120px; /* Fixed navbar height + extra space */
+  min-height: 100%;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv03', 'cv04', 'cv11';
+  overflow-x: hidden; /* Yatay scroll'u engelle */
+  background: linear-gradient(to bottom right, #fff7ed 0%, #fffbeb 50%, #fff7ed 100%);
+}
+
+body.dark {
+  background: linear-gradient(to bottom right, #111827 0%, #1f2937 50%, #111827 100%);
+}
+
+#root {
+  min-height: 100vh;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@layer components {
+  /* Form Elementleri için Stil */
+  .light-input {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400;
+    @apply focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 dark:focus:ring-orange-400/20;
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .light-textarea {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-400;
+    @apply focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 dark:focus:ring-orange-400/20;
+    @apply transition-all duration-200 ease-in-out resize-none;
+  }
+  
+  .light-select {
+    @apply bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-gray-100;
+    @apply focus:border-orange-500 dark:focus:border-orange-400 focus:outline-none focus:ring-2 focus:ring-orange-500/20 dark:focus:ring-orange-400/20;
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .light-checkbox {
+    @apply text-orange-600 dark:text-orange-400 bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600 rounded;
+    @apply focus:ring-orange-500 dark:focus:ring-orange-400 focus:ring-2 focus:ring-offset-0;
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .light-label {
+    @apply flex items-center gap-2 text-gray-700 dark:text-gray-300 text-sm;
+    @apply transition-colors duration-200;
+  }
+  
+  .light-button {
+    @apply bg-white/80 hover:bg-orange-50 text-orange-600 hover:text-orange-700 border border-orange-200 hover:border-orange-400 transition-all duration-200;
+  }
+  
+  .light-card {
+    @apply bg-gradient-to-br from-white to-gray-50/80 dark:from-gray-800 dark:to-gray-800/80;
+    @apply border border-gray-200 dark:border-gray-700 rounded-xl p-4 shadow-sm;
+    @apply hover:shadow-md transition-all duration-200;
+  }
+}
+
+/* Animation Utilities */
+@layer utilities {
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-up {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out forwards;
+  }
+  
+  .animate-slide-right {
+    opacity: 0;
+    animation: slideRight 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    opacity: 0;
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+  
+  .animate-bounce-in {
+    opacity: 0;
+    animation: bounceIn 0.8s ease-out forwards;
+  }
+  
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+  
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+  
+  .animation-delay-600 {
+    animation-delay: 0.6s;
+  }
+  
+  .animation-delay-800 {
+    animation-delay: 0.8s;
+  }
+  
+  .animation-delay-1000 {
+    animation-delay: 1.0s;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideRight {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+/* Gradient Text */
+.gradient-text {
+  background: linear-gradient(135deg, #ea580c 0%, #f59e0b 50%, #eab308 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hover Glow Effect */
+.hover-glow:hover {
+  box-shadow: 0 0 30px rgba(234, 88, 12, 0.3);
+}
+
+/* Mobil Responsive Optimizasyonları */
+@media (max-width: 640px) {
+  /* Mobil cihazlarda küçük font boyutları */
+  .text-5xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+  
+  .text-4xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  
+  .text-3xl {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+  }
+  
+  .text-2xl {
+    font-size: 1.125rem;
+    line-height: 1.75rem;
+  }
+  
+  /* Mobil cihazlarda daha az padding */
+  .container {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  /* Touch-friendly butonlar */
+  button {
+    min-height: 44px; /* Apple'ın önerdiği minimum touch target */
+  }
+  
+  /* Mobil cihazlarda scroll container */
+  .cv-preview {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Form elementleri için daha iyi spacing */
+  .light-input, .light-textarea, .light-select {
+    font-size: 1rem; /* iOS zoom'u engellemek için 16px */
+  }
+}
+
+/* Tablet Responsive */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .text-7xl {
+    font-size: 3rem;
+    line-height: 1;
+  }
+  
+  .text-6xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* CVPreview için özel responsive */
+@media (max-width: 1024px) {
+  #cv-preview {
+    transform: scale(0.8);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 768px) {
+  #cv-preview {
+    transform: scale(0.6);
+    transform-origin: top center;
+  }
+}
+
+@media (max-width: 480px) {
+  #cv-preview {
+    transform: scale(0.4);
+    transform-origin: top center;
+  }
+}
+
+/* Dark mode için smooth transition */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Focus visible için accessibility */
+*:focus-visible {
+  outline: 2px solid #ea580c;
+  outline-offset: 2px;
+}
+
+/* Loading skeleton */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
 }

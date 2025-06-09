@@ -1,70 +1,124 @@
-# Getting Started with Create React App
+# 📄 CV Oluşturucu
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Modern, kullanıcı dostu ve tamamen ücretsiz bir CV oluşturucu web uygulaması. Firebase veya herhangi bir sunucu gerektirmez - tüm veriler tarayıcınızda güvenle saklanır.
 
-## Available Scripts
+## ✨ Özellikler
 
-In the project directory, you can run:
+- **🏠 Landing Page**: Kullanıcı dostu giriş sayfası
+- **📝 Form Tabanlı CV Oluşturma**: Adım adım CV bilgilerini girme
+- **👁️ Gerçek Zamanlı Önizleme**: Değişiklikleri anında görün
+- **🎨 Çoklu Şablon**: Minimal ve Modern tasarım seçenekleri
+- **📄 PDF İndirme**: Yüksek kalitede PDF export
+- **📱 Responsive Tasarım**: Mobil ve masaüstü uyumlu
+- **🔐 Gizlilik**: Veriler sadece tarayıcınızda saklanır (localStorage)
+- **🎯 Sıfır Maliyet**: GitHub Pages ile ücretsiz barındırma
 
-### `npm start`
+## 🛠️ Teknolojiler
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React.js** - Kullanıcı arayüzü
+- **Tailwind CSS** - Styling
+- **Lucide Icons** - Modern ikonlar
+- **html2pdf.js** - PDF export
+- **GitHub Pages** - Deployment
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 🚀 Kurulum
 
-### `npm test`
+1. Projeyi klonlayın:
+```bash
+git clone https://github.com/yourusername/cv-app.git
+cd cv-app
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Bağımlılıkları yükleyin:
+```bash
+npm install
+```
 
-### `npm run build`
+3. Geliştirme sunucusunu başlatın:
+```bash
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+4. Tarayıcınızda `http://localhost:3000` adresini açın.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 📦 Deployment
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### GitHub Pages ile:
 
-### `npm run eject`
+1. `package.json` dosyasındaki `homepage` alanını güncelleyin:
+```json
+"homepage": "https://yourusername.github.io/cv-app"
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. Build ve deploy:
+```bash
+npm run build
+npm run deploy
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📁 Proje Yapısı
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+src/
+├── components/
+│   ├── LandingPage.jsx     # Ana sayfa
+│   ├── CVForm.jsx          # CV form bileşeni
+│   ├── CVPreview.jsx       # CV önizleme
+│   ├── TemplateSelector.jsx # Şablon seçici
+│   └── DownloadButton.jsx  # PDF indirme butonu
+├── templates/
+│   ├── MinimalTemplate.jsx # Minimal CV şablonu
+│   └── ModernTemplate.jsx  # Modern CV şablonu
+├── utils/
+│   └── pdfExporter.js      # PDF export fonksiyonu
+├── App.js                  # Ana uygulama
+└── index.js               # Uygulama giriş noktası
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## 🎯 Kullanım
 
-## Learn More
+1. **Ana Sayfa**: "CV Oluşturmaya Başla" butonuna tıklayın
+2. **Şablon Seçin**: Beğendiğiniz tasarımı seçin
+3. **Bilgileri Girin**: Sol panelden CV bilgilerinizi ekleyin:
+   - Kişisel bilgiler
+   - Özet
+   - İş deneyimi
+   - Eğitim
+   - Yetenekler
+   - Diller
+4. **Önizleme**: Sağ panelde gerçek zamanlı önizleme görün
+5. **İndir**: "PDF İndir" butonuyla CV'nizi kaydedin
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🔧 Özelleştirme
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Yeni Şablon Ekleme:
 
-### Code Splitting
+1. `src/templates/` klasörüne yeni şablon dosyası ekleyin
+2. `src/components/TemplateSelector.jsx` dosyasına şablonu ekleyin
+3. `src/components/CVPreview.jsx` dosyasına şablon render'ını ekleyin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Stil Değişiklikleri:
 
-### Analyzing the Bundle Size
+Tailwind CSS kullanılmıştır. Stilleri değiştirmek için:
+- Component dosyalarındaki `className` değerlerini düzenleyin
+- `tailwind.config.js` dosyasından global ayarları değiştirin
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+## 🤝 Katkıda Bulunma
 
-### Making a Progressive Web App
+1. Fork yapın
+2. Feature branch oluşturun (`git checkout -b feature/AmazingFeature`)
+3. Commit yapın (`git commit -m 'Add some AmazingFeature'`)
+4. Branch'i push edin (`git push origin feature/AmazingFeature`)
+5. Pull Request oluşturun
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 📄 Lisans
 
-### Advanced Configuration
+Bu proje MIT lisansı altında lisanslanmıştır.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+## 🙏 Teşekkürler
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [React](https://reactjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide Icons](https://lucide.dev/)
+- [html2pdf.js](https://github.com/eKoopmans/html2pdf.js)
+- [GitHub Pages](https://pages.github.com/)
