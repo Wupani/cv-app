@@ -30,28 +30,35 @@ Hayalinizdeki işe adım atmak için profesyonel bir CV'ye ihtiyacınız var. Ka
   <table>
     <tr>
       <td align="center" width="33%">
-        <img src=".github/images/cv-builder-demo.jpg" alt="Minimal Template" width="250"/>
+        <img src=".github/images/minimal-template.png" alt="Minimal Template - Temiz ve sade CV tasarımı" width="250"/>
         <br />
-        <strong>Minimal Template</strong>
+        <strong>🎯 Minimal Template</strong>
         <br />
         <small>Temiz ve sade tasarım</small>
       </td>
       <td align="center" width="33%">
-        <img src=".github/images/cv-builder-demo.jpg" alt="Modern Template" width="250"/>
+        <img src=".github/images/modern-template.png" alt="Modern Template - Renkli sidebar CV düzeni" width="250"/>
         <br />
-        <strong>Modern Template</strong>
+        <strong>🚀 Modern Template</strong>
         <br />
         <small>Renkli sidebar düzeni</small>
       </td>
       <td align="center" width="34%">
-        <img src=".github/images/cv-builder-demo.jpg" alt="Professional Template" width="250"/>
+        <img src=".github/images/professional-template.png" alt="Professional Template - Kurumsal CV görünümü" width="250"/>
         <br />
-        <strong>Professional Template</strong>
+        <strong>💼 Professional Template</strong>
         <br />
         <small>Kurumsal görünüm</small>
       </td>
     </tr>
   </table>
+</div>
+
+### 📱 **Responsive Tasarım**
+
+<div align="center">
+  <img src=".github/images/cv-builder-demo.jpg" alt="CV Builder Responsive Design - Mobil ve masaüstü uyumlu" width="600"/>
+  <p><i>Tüm cihazlarda mükemmel görünüm - iPhone'dan 4K monitöre kadar!</i></p>
 </div>
 
 ## ✨ Özellikler
