@@ -20,8 +20,38 @@ Hayalinizdeki işe adım atmak için profesyonel bir CV'ye ihtiyacınız var. Ka
 ## 📸 Önizleme
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x400/f97316/ffffff?text=CV+Builder+Demo" alt="CV Builder Demo" width="800"/>
+  <img src=".github/images/cv-builder-demo.jpg" alt="CV Builder Demo - Gerçek zamanlı önizleme ile profesyonel CV oluşturma" width="800"/>
   <p><i>Modern, kullanıcı dostu arayüz ile dakikalar içinde profesyonel CV oluşturun</i></p>
+</div>
+
+### 🎨 **Desteklenen Şablonlar**
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" width="33%">
+        <img src=".github/images/cv-builder-demo.jpg" alt="Minimal Template" width="250"/>
+        <br />
+        <strong>Minimal Template</strong>
+        <br />
+        <small>Temiz ve sade tasarım</small>
+      </td>
+      <td align="center" width="33%">
+        <img src=".github/images/cv-builder-demo.jpg" alt="Modern Template" width="250"/>
+        <br />
+        <strong>Modern Template</strong>
+        <br />
+        <small>Renkli sidebar düzeni</small>
+      </td>
+      <td align="center" width="34%">
+        <img src=".github/images/cv-builder-demo.jpg" alt="Professional Template" width="250"/>
+        <br />
+        <strong>Professional Template</strong>
+        <br />
+        <small>Kurumsal görünüm</small>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## ✨ Özellikler
